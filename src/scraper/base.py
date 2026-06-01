@@ -6,37 +6,33 @@ Enforces consistent structure across different platform adapters.
 """
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
+from pydantic import BaseModel, Field, HttpUrl
 
 
-@dataclass
-class ScrapedUser:
-    """Represents a single scraped user profile."""
-    username: str
-    display_name: Optional[str] = None
-    profile_url: Optional[str] = None
-    scraped_at: str = field(
+class ScrapedUser(BaseModel):
+    """
+    Strict data contract for B2B leads. 
+    Enforces validation on critical fields to prevent pipeline pollution.
+    """
+    username: str = Field(..., min_length=1, description="Primary identifier (usually company ID or slug)")
+    display_name: Optional[str] = Field(None, description="Decision maker name")
+    profile_url: Optional[str] = Field(None, description="Valid URL to the lead's profile")
+    scraped_at: str = Field(
         default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     )
 
     def to_dict(self) -> dict:
-        return {
-            "username": self.username,
-            "display_name": self.display_name or "",
-            "profile_url": self.profile_url or "",
-            "scraped_at": self.scraped_at,
-        }
+        return self.model_dump(mode='json')
 
 
-@dataclass
-class ScrapeResult:
+class ScrapeResult(BaseModel):
     """Container for a full scrape operation result."""
-    users: list[ScrapedUser] = field(default_factory=list)
+    users: list[ScrapedUser] = Field(default_factory=list)
     pages_scraped: int = 0
-    errors: list[str] = field(default_factory=list)
-    started_at: str = field(
+    errors: list[str] = Field(default_factory=list)
+    started_at: str = Field(
         default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     )
     completed_at: Optional[str] = None
