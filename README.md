@@ -1,34 +1,22 @@
-# B2B Lead Gen & Outreach Automation 🚀
+# B2B Lead Gen & Outreach Architecture 🏢
 
-> **Business Value:** Automatically scrapes decision-makers from B2B directories and executes personalized connection requests, replacing hours of manual prospecting with a highly reliable, Dockerized system.
+> **Enterprise Value:** Automates the tedious process of B2B lead generation. This pipeline extracts decision-maker data and executes personalized initial outreach sequences, saving sales teams countless hours.
 
-This project is tailored specifically for **Digital Marketing Agencies** or B2B SaaS companies that rely on high-volume outbound lead generation.
+This implementation is specifically designed for **B2B Digital Agencies** and Sales teams that require structured, verifiable lead data.
 
----
+## 🛠 Technical Highlights
 
-## 💼 Core Competencies
-
-1. **Lead Scraper**: Targets B2B directories, navigates via "Load More" pagination, and extracts Decision Maker Names, LinkedIn URLs, and Company IDs.
-2. **Sales Outreach Bot**: Logs into the sales account and executes targeted messages with human-like interaction patterns (±20% timing jitter) to bypass strict B2B rate limits.
-
----
-
-## 🛠 Features
-
-*   **Robust DOM Parsing**: Uses Playwright to handle JavaScript-heavy B2B portals.
-*   **Anti-Bot Evading**: Incorporates advanced rate limiting (`requests_per_minute: 15`, `batch_pause: 15m`).
-*   **Enterprise Architecture**: Configured via a central `config.json`. Docker-compose ready for VPS deployment.
-*   **Audit Trail**: Logs all actions (sent, skipped, failed) to `logs/b2b_outreach_log.csv` using Loguru.
-
----
+*   **Strict Data Contracts (Pydantic):** B2B data is notoriously messy. This architecture utilizes `pydantic` to enforce strict validation rules on incoming data (e.g., mandatory URL formats, required company identifiers), ensuring no garbage data pollutes your CRM.
+*   **Flat-File Data Sink (CSV):** Outputs verified leads directly into clean CSV files, which is the universal standard for easy import into tools like Salesforce, HubSpot, or Lemlist.
+*   **Robust DOM Orchestration:** Powered by Playwright with advanced waiting strategies to handle dynamically loaded single-page applications (SPAs) common in modern business directories.
+*   **Jitter-Based Rate Limiting:** Automates outreach with randomized micro-delays to perfectly simulate human typing and clicking behaviors, protecting sender reputation.
 
 ## 🚀 Deployment
 
 ```bash
-# Setup Env Vars
-export B2B_USERNAME="sales@agency.com"
-export B2B_PASSWORD="secure_pass"
+# Install strict requirements
+pip install -r requirements.txt
 
-# Run via Docker
-docker-compose up -d
+# Execute
+python run_scraper.py --config config.json
 ```
