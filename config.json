@@ -1,0 +1,107 @@
+{
+  "scraper": {
+    "target": {
+      "base_url": "https://directory.b2b-example.com/marketing-agencies",
+      "selectors": {
+        "user_container": ".company-card",
+        "username": ".company-id",
+        "display_name": ".decision-maker-name",
+        "profile_link": "a.linkedin-url"
+      },
+      "pagination": {
+        "strategy": "click",
+        "param_name": "page",
+        "button_selector": "button.load-next-agencies",
+        "max_pages": 50,
+        "scroll_delay": 2.0
+      }
+    },
+    "auth": {
+      "required": true,
+      "login_url": "https://directory.b2b-example.com/login",
+      "credentials": {
+        "username": "${B2B_USERNAME}",
+        "password": "${B2B_PASSWORD}"
+      },
+      "selectors": {
+        "username_field": "input[name='work_email']",
+        "password_field": "input[name='password']",
+        "submit_button": "button#login-submit"
+      },
+      "post_login_wait": 3
+    },
+    "rate_limit": {
+      "requests_per_minute": 15,
+      "min_delay_seconds": 2.0,
+      "max_delay_seconds": 5.0,
+      "backoff_multiplier": 2.0,
+      "max_backoff_seconds": 120
+    },
+    "output": {
+      "directory": "./output",
+      "filename": "b2b_leads_{timestamp}.csv",
+      "columns": ["username", "display_name", "profile_url", "scraped_at"]
+    },
+    "browser": {
+      "headless": true,
+      "viewport_width": 1920,
+      "viewport_height": 1080,
+      "user_agent": "",
+      "navigation_timeout": 45
+    }
+  },
+  "outreach": {
+    "account": {
+      "login_url": "https://directory.b2b-example.com/login",
+      "credentials": {
+        "username": "${SALES_USERNAME}",
+        "password": "${SALES_PASSWORD}"
+      },
+      "selectors": {
+        "username_field": "input[name='work_email']",
+        "password_field": "input[name='password']",
+        "submit_button": "button#login-submit"
+      },
+      "post_login_wait": 3
+    },
+    "message": {
+      "template_file": "./config/b2b_pitch.txt",
+      "selectors": {
+        "message_button": "button.connect-message",
+        "message_input": "textarea.compose-body",
+        "send_button": "button.send-pitch",
+        "success_indicator": ".alert-success"
+      }
+    },
+    "input": {
+      "csv_path": "./output/b2b_leads_latest.csv",
+      "username_column": "username",
+      "skip_already_messaged": true
+    },
+    "rate_limit": {
+      "messages_per_hour": 10,
+      "min_delay_seconds": 45,
+      "max_delay_seconds": 120,
+      "jitter": true,
+      "batch_size": 3,
+      "batch_pause_minutes": 15,
+      "daily_limit": 30
+    },
+    "session": {
+      "auto_relogin": true,
+      "max_session_minutes": 120,
+      "relogin_cooldown": 60
+    },
+    "logging": {
+      "log_directory": "./logs",
+      "message_log": "./logs/b2b_outreach_log.csv",
+      "level": "INFO"
+    },
+    "browser": {
+      "headless": true,
+      "viewport_width": 1920,
+      "viewport_height": 1080,
+      "navigation_timeout": 45
+    }
+  }
+}

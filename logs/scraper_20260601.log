@@ -1,0 +1,13 @@
+2026-06-01 21:17:45.559 | INFO     | src.scraper.session_manager:start:61 - Launching browser (headless=%s)
+2026-06-01 21:17:47.552 | DEBUG    | src.scraper.session_manager:_load_cookies:117 - No cookie file found at %s
+2026-06-01 21:17:47.869 | INFO     | src.scraper.session_manager:start:93 - Browser ready — UA: %s
+2026-06-01 21:17:47.870 | INFO     | src.scraper.platform_scraper:authenticate:75 - Authentication not required — skipping login
+2026-06-01 21:17:47.872 | ERROR    | src.scraper.platform_scraper:scrape:189 - Scrape failed with error: %s
+2026-06-01 21:17:47.874 | INFO     | src.scraper.platform_scraper:scrape:195 - Scrape complete: %d users in %.1fs (%d pages, %d errors)
+2026-06-01 21:18:31.371 | INFO     | src.scraper.session_manager:start:61 - Launching browser (headless=%s)
+2026-06-01 21:18:33.815 | DEBUG    | src.scraper.session_manager:_load_cookies:117 - No cookie file found at %s
+2026-06-01 21:18:34.109 | INFO     | src.scraper.session_manager:start:93 - Browser ready — UA: %s
+2026-06-01 21:18:34.109 | INFO     | src.scraper.platform_scraper:authenticate:75 - Authentication not required — skipping login
+2026-06-01 21:18:34.110 | INFO     | src.scraper.platform_scraper:scrape:160 - Navigating to target: %s
+2026-06-01 21:18:36.515 | ERROR    | src.scraper.platform_scraper:scrape:189 - Scrape failed with error: %s
+2026-06-01 21:18:36.518 | INFO     | src.scraper.platform_scraper:scrape:195 - Scrape complete: %d users in %.1fs (%d pages, %d errors)

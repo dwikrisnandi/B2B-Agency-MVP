@@ -1,0 +1,1 @@
+2026-06-01 21:19:46.295 | INFO     | src.outreach.message_handler:_load_template:43 - Loaded message template from %s (%d chars, ~%d placeholders)
