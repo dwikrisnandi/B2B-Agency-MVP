@@ -1,7 +1,0 @@
-﻿username,display_name,profile_url,scraped_at
-@johndoe_dev,John Doe,http://localhost:8000/user/johndoe_dev,2026-06-01 21:11:58
-@alice_wonder,Alice Smith,http://localhost:8000/user/alice_wonder,2026-06-01 21:11:59
-@mkovac_creator,Michael Kovac,http://localhost:8000/user/mkovac_creator,2026-06-01 21:11:59
-@sarah_lee99,Sarah Lee,http://localhost:8000/user/sarah_lee99,2026-06-01 21:11:59
-@dxu_design,David Xu,http://localhost:8000/user/dxu_design,2026-06-01 21:11:59
-@emma_reads,Emma Brown,http://localhost:8000/user/emma_reads,2026-06-01 21:11:59
